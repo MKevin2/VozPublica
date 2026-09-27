@@ -44,6 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:text="Pesquisa Estimulada: Selecione um candidato"
+                android:textColor="#000000"
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -56,6 +57,7 @@
                 android:layout_marginBottom="12dp"
                 android:clickable="true"
                 android:focusable="true"
+                app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="4dp">
 
@@ -88,7 +90,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="União Nacional Institucional (UNI)"
-                            android:textColor="@android:color/darker_gray" />
+                            android:textColor="@android:color/darker_gray"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -101,6 +104,7 @@
                 android:layout_marginBottom="12dp"
                 android:clickable="true"
                 android:focusable="true"
+                app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="4dp">
 
@@ -146,6 +150,7 @@
                 android:layout_marginBottom="12dp"
                 android:clickable="true"
                 android:focusable="true"
+                app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="4dp">
 
@@ -192,6 +197,7 @@
                 android:layout_marginBottom="12dp"
                 android:clickable="true"
                 android:focusable="true"
+                app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="4dp">
 
@@ -238,6 +244,7 @@
                 android:layout_marginBottom="12dp"
                 android:clickable="true"
                 android:focusable="true"
+                app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="4dp">
 
@@ -284,6 +291,7 @@
                 android:layout_marginBottom="12dp"
                 android:clickable="true"
                 android:focusable="true"
+                app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="4dp">
 
@@ -324,6 +332,7 @@
                 android:layout_marginBottom="12dp"
                 android:clickable="true"
                 android:focusable="true"
+                app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="4dp">
 
@@ -364,6 +373,7 @@
                 android:layout_marginBottom="12dp"
                 android:clickable="true"
                 android:focusable="true"
+                app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="4dp">
 

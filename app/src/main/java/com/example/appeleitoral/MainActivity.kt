@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
                 progressBar.progress = i
             }
 
-            val intent = Intent(this@MainActivity, Estimulada::class.java)
+            val intent = Intent(this@MainActivity, Login::class.java)
             startActivity(intent)
 
             finish()

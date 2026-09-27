@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F4C2"
+    tools:context=".Problemas">
+
+    <!-- TÍTULO -->
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="30dp"
+        android:gravity="center"
+        android:text="PRINCIPAIS PROBLEMAS"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- ORIENTAÇÃO -->
+    <TextView
+        android:id="@+id/tvOrientacao"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="30dp"
+        android:gravity="center"
+        android:text="Selecione os 3 principais problemas"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitulo" />
+
+    <!-- LISTA DE PROBLEMAS -->
+    <ScrollView
+        android:id="@+id/scrollProblemas"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@id/btConfirmar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvOrientacao">
+
+        <LinearLayout
+            android:id="@+id/llProblemas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/cbSaude"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Saúde"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <CheckBox
+                android:id="@+id/cbEducacao"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Educação"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <CheckBox
+                android:id="@+id/cbTransporte"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Transporte"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <CheckBox
+                android:id="@+id/cbSeguranca"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Segurança"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <CheckBox
+                android:id="@+id/cbEmprego"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Emprego"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <CheckBox
+                android:id="@+id/cbMoradia"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Moradia"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <CheckBox
+                android:id="@+id/cbEconomia"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Economia"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <CheckBox
+                android:id="@+id/cbMeioAmbiente"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Meio ambiente"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <CheckBox
+                android:id="@+id/cbCorrupcao"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Corrupção"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <CheckBox
+                android:id="@+id/cbOutro"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Outro"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <CheckBox
+                android:id="@+id/cbNaoResponder"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Não Responder"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- CONFIRMAR -->
+    <Button
+        android:id="@+id/btConfirmar"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#017FC0"
+        android:text="Confirmar"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

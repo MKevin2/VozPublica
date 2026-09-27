@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "816807165906",
+    "project_id": "vozpublica-21c26",
+    "storage_bucket": "vozpublica-21c26.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:816807165906:android:8c9b853bd9ec355dc4120b",
+        "android_client_info": {
+          "package_name": "com.example.appeleitoral"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDn6ROh9gPwQwRaN7Xtj3EvP6XL3T5jH50"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

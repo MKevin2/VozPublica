@@ -23,11 +23,14 @@
         app:srcCompat="@drawable/logo_app_eleitoral" />
 
     <!-- TÍTULO -->
+
+    <!-- USUÁRIO -->
+
     <TextView
         android:id="@+id/tvLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="12dp"
         android:text="Login"
         android:textColor="#000000"
         android:textSize="22sp"
@@ -35,8 +38,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageViewLogo" />
-
-    <!-- USUÁRIO -->
 
     <TextView
         android:id="@+id/tvUsuario"
@@ -47,7 +48,7 @@
         android:layout_marginEnd="45dp"
         android:text="Usuário"
         android:textColor="#000000"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -61,77 +62,80 @@
         android:layout_marginStart="45dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="45dp"
-        android:hint="Digite seu usuário"
+        android:hint="Digite seu usuário..."
         android:inputType="text"
         android:padding="10dp"
-        android:textColor="#000000"
+        android:textColor="#757575"
         android:textColorHint="#757575"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvUsuario" />
 
     <!-- SENHA -->
-    <TextView
-        android:id="@+id/tvSenha"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="45dp"
-        android:text="Senha"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etUsuario" />
+
+    <!-- BOTÕES -->
+
+    <!-- MENSAGEM -->
 
     <EditText
         android:id="@+id/etSenha"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="45dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="45dp"
-        android:hint="Digite sua senha"
+        android:hint="Digite sua senha..."
         android:inputType="textPassword"
         android:padding="10dp"
-        android:textColor="#000000"
+        android:textColor="#757575"
         android:textColorHint="#757575"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvSenha" />
 
-    <!-- BOTÕES -->
-
-    <!-- MENSAGEM -->
+    <TextView
+        android:id="@+id/tvSenha"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="45dp"
+        android:text="Senha"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etUsuario" />
 
     <Button
         android:id="@+id/btAcessar"
-        android:layout_width="120dp"
+        android:layout_width="160dp"
         android:layout_height="50dp"
         android:layout_marginTop="50dp"
         android:backgroundTint="#017FC0"
         android:text="Acessar"
         android:textColor="#FFFFFF"
-        android:textSize="14sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btFinalizar"
         app:layout_constraintTop_toBottomOf="@id/etSenha" />
 
     <Button
         android:id="@+id/btFinalizar"
-        android:layout_width="120dp"
+        android:layout_width="160dp"
         android:layout_height="50dp"
         android:layout_marginTop="50dp"
         android:backgroundTint="#017FC0"
         android:text="Finalizar"
         android:textColor="#FFFFFF"
-        android:textSize="14sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/btAcessar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etSenha" />

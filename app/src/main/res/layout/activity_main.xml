@@ -31,6 +31,7 @@
         android:layout_marginStart="85dp"
         android:layout_marginTop="172dp"
         android:layout_marginEnd="85dp"
+        android:contentDescription="@string/Descricao_Imagem"
         app:layout_constraintBottom_toTopOf="@+id/pgb"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

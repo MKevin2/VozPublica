@@ -1,3 +1,75 @@
 <resources>
+    <!-- App Geral -->
     <string name="app_name">Voz!</string>
+    <string name="Descricao_Imagem">Logo: VozPública</string>
+
+    <!-- Tela de Login -->
+    <string name="Titulo_Login">Login</string>
+    <string name="tvUsuário">Usuário</string>
+    <string name="tvSenha">Senha</string>
+    <string name="hintUsuario">Digite seu usuário…</string>
+    <string name="hintSenha">Digite sua senha…</string>
+    <string name="BtnAcessar">Acessar</string>
+
+    <!-- Tela de Cadastro / Entrevistado -->
+    <string name="Titulo_Entrevistado">Dados do Entrevistado</string>
+    <string name="tvNome">Nome</string>
+    <string name="tvCelular">Celular</string>
+    <string name="hintName">Digite seu nome…</string>
+    <string name="hintContato">Digite seu celular…</string>
+    <string name="Datetime">Data e Hora: Registradas Automaticamente.</string>
+    <string name="Localizacao">Localização: Registrada Automaticamente.</string>
+    <string name="Titulo_Eleitores">Eleitores</string>
+
+    <!-- Pesquisa Espontânea -->
+    <string name="Titulo_Espontanea">Pesquisa Espontânea</string>
+    <string name="Pergunta_expontanea">Em quem você pretende votar para Presidente?</string>
+    <string name="hintExpontanea">Digite o nome do candidato…</string>
+
+    <!-- Pesquisa Estimulada e Candidatos -->
+    <string name="Pesquisa_estimulada">Pesquisa Estimulada: Selecione um candidato</string>
+    <string name="Foto_candidato">Candidato à Presidência</string>
+    <string name="Roberto">Roberto Sampaio Moura</string>
+    <string name="Carlos">Carlos Alberto Siqueira</string>
+    <string name="Beatriz">Beatriz Helena Gouveia</string>
+    <string name="João">João Xavier de Almeida</string>
+    <string name="Mariana">Mariana Costa Nunes</string>
+
+    <!-- Partidos -->
+    <string name="PVR">Partido Verde e Renovação (PVR)</string>
+    <string name="UNI">União Nacional Institucional (UNI)</string>
+    <string name="PMT">Partido da Mudança Trabalhista (PMT)</string>
+    <string name="PRP">Partido da Renovação Progressista (PRP)</string>
+    <string name="APL">Aliança pela Liberdade (APL)</string>
+
+    <!-- Opções de Voto / Respostas -->
+    <string name="NaoResponder">Não desejo responder</string>
+    <string name="Nulo">Nulo</string>
+    <string name="Branco">Branco</string>
+    <string name="NaoSei">Não Sei</string>
+    <string name="Outro">Outro</string>
+
+    <!-- Principais Problemas -->
+    <string name="Pergunta_problemas">Principais Problemas: Selecione os 3 principais problemas:</string>
+    <string name="Saúde">Saúde</string>
+    <string name="Educação">Educação</string>
+    <string name="Transporte">Transporte</string>
+    <string name="MeioAmbiente">Meio Ambiente</string>
+    <string name="Moradia">Moradia</string>
+    <string name="Segurança">Segurança</string>
+    <string name="Emprego">Emprego</string>
+    <string name="Economia">Economia</string>
+    <string name="Corrupcao">Corrupção</string>
+
+    <!-- Resultados e Menu -->
+    <string name="Titulo_Resultados">Resultados</string>
+    <string name="Titulo_MenuResultados">Dados das Pesquisas</string>
+    <string name="SelecionarOpcao">Selecione uma Opção:</string>
+    <string name="BtnResultados">Resultados</string>
+    <string name="BtnLimparDados">Limpar Dados</string>
+
+    <!-- Botões de Ação Comuns -->
+    <string name="BtnConfirmar">Confirmar</string>
+    <string name="BtnFinalizar">Finalizar</string>
+    <string name="BtnVoltar">Voltar</string>
 </resources>

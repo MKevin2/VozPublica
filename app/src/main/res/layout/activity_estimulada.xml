@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F0F4C2"
+    android:contentDescription="@string/Descricao_Imagem"
     android:padding="16dp"
     tools:context=".Estimulada">
 
@@ -15,6 +16,7 @@
         android:layout_width="150dp"
         android:layout_height="100dp"
         android:layout_marginTop="8dp"
+        android:contentDescription="@string/Descricao_Imagem"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,9 +45,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:text="Pesquisa Estimulada: Selecione um candidato"
-                android:textColor="#000000"
+                android:text="@string/Pesquisa_estimulada"
                 android:textAlignment="center"
+                android:textColor="#000000"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -72,6 +74,7 @@
                     <ImageView
                         android:layout_width="60dp"
                         android:layout_height="60dp"
+                        android:contentDescription="@string/Foto_candidato"
                         android:src="@drawable/carlos_alberto_siqueira" />
 
                     <LinearLayout
@@ -83,14 +86,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Carlos Alberto Siqueira"
+                            android:text="@string/Carlos"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="União Nacional Institucional (UNI)"
+                            android:text="@string/UNI"
                             android:textColor="@android:color/darker_gray"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -119,6 +122,7 @@
                     <ImageView
                         android:layout_width="60dp"
                         android:layout_height="60dp"
+                        android:contentDescription="@string/Foto_candidato"
                         android:src="@drawable/beatriz_helena_gouveia" />
 
                     <LinearLayout
@@ -130,14 +134,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Beatriz Helena Gouveia"
+                            android:text="@string/Beatriz"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Partido da Mudança Trabalhista (PMT)"
+                            android:text="@string/PMT"
                             android:textColor="@android:color/darker_gray" />
                     </LinearLayout>
                 </LinearLayout>
@@ -165,6 +169,7 @@
                     <ImageView
                         android:layout_width="60dp"
                         android:layout_height="60dp"
+                        android:contentDescription="@string/Foto_candidato"
                         android:src="@drawable/jo_o_xavier_de_almeida" />
 
                     <LinearLayout
@@ -176,14 +181,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="João Xavier de Almeida"
+                            android:text="@string/João"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Partido da Renovação Progressista (PRP)"
+                            android:text="@string/PRP"
                             android:textColor="@android:color/darker_gray" />
 
                     </LinearLayout>
@@ -212,6 +217,7 @@
                     <ImageView
                         android:layout_width="60dp"
                         android:layout_height="60dp"
+                        android:contentDescription="@string/Foto_candidato"
                         android:src="@drawable/mariana_costa_nunes" />
 
                     <LinearLayout
@@ -223,14 +229,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Mariana Costa Nunes"
+                            android:text="@string/Mariana"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Aliança pela Liberdade (APL)"
+                            android:text="@string/APL"
                             android:textColor="@android:color/darker_gray" />
 
                     </LinearLayout>
@@ -259,6 +265,7 @@
                     <ImageView
                         android:layout_width="60dp"
                         android:layout_height="60dp"
+                        android:contentDescription="@string/Foto_candidato"
                         android:src="@drawable/roberto_sampaio_mendes" />
 
                     <LinearLayout
@@ -270,14 +277,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Roberto Sampaio Moura"
+                            android:text="@string/Roberto"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Partido Verde e Renovação (PVR)"
+                            android:text="@string/PVR"
                             android:textColor="@android:color/darker_gray" />
 
                     </LinearLayout>
@@ -306,6 +313,7 @@
                     <ImageView
                         android:layout_width="60dp"
                         android:layout_height="60dp"
+                        android:contentDescription="@string/Foto_candidato"
                         android:src="@drawable/voto_branco" />
 
                     <LinearLayout
@@ -317,7 +325,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Branco"
+                            android:text="@string/Branco"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -347,6 +355,7 @@
                     <ImageView
                         android:layout_width="60dp"
                         android:layout_height="60dp"
+                        android:contentDescription="@string/Foto_candidato"
                         android:src="@drawable/voto_nulo" />
 
                     <LinearLayout
@@ -358,7 +367,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Nulo"
+                            android:text="@string/Nulo"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -388,6 +397,7 @@
                     <ImageView
                         android:layout_width="60dp"
                         android:layout_height="60dp"
+                        android:contentDescription="@string/Foto_candidato"
                         android:src="@drawable/voto_nao_sei" />
 
                     <LinearLayout
@@ -399,7 +409,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Não Sei"
+                            android:text="@string/NaoSei"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -417,7 +427,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:backgroundTint="#0183C6"
-        android:text="Confirmar"
+        android:text="@string/BtnConfirmar"
         android:textColor="#fff"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

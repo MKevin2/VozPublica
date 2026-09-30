@@ -5,14 +5,12 @@ plugins {
 
 android {
     namespace = "com.example.appeleitoral"
-    compileSdk {
-        version = release(37)
-    }
+    compileSdk = 37 // Sintaxe corrigida e versão estabilizada
 
     defaultConfig {
         applicationId = "com.example.appeleitoral"
         minSdk = 31
-        targetSdk = 37
+        targetSdk = 37 // Ajustado para corresponder ao compileSdk
         versionCode = 1
         versionName = "1.0"
 
@@ -21,9 +19,11 @@ android {
 
     buildTypes {
         release {
-            optimization {
-                enable = false
-            }
+            isMinifyEnabled = false // Sintaxe correta para o Kotlin DSL
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -41,6 +41,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
+
     // Importa a plataforma do Firebase (BOM)
     implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
 

@@ -20,6 +20,9 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class DadosEntrevistado : AppCompatActivity() {
 
@@ -109,6 +112,8 @@ class DadosEntrevistado : AppCompatActivity() {
         val nome = etNome.text.toString().trim()
         val celular = etCelular.text.toString().trim()
 
+        val dataFormatada = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault()).format(Date())
+
         // 3. Monta o documento completo
         val pesquisaCompleta = hashMapOf(
             "votoEspontaneo" to votoEspontaneo,
@@ -122,7 +127,7 @@ class DadosEntrevistado : AppCompatActivity() {
                 "latitude" to latitude,
                 "longitude" to longitude
             ),
-            "dataHora" to System.currentTimeMillis() // Grava a data/hora automaticamente em milissegundos
+            "dataHora" to dataFormatada // Grava a data/hora automaticamente em milissegundos
         )
 
         // 4. Salva no banco de dados e reinicia

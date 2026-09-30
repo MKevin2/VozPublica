@@ -29,26 +29,6 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        // Inicializa a instância do Firestore
-        val db = Firebase.firestore
-
-        // Cria um documento de teste
-        val pesquisaTeste = hashMapOf(
-            "tipoPesquisa" to "Estimulada",
-            "candidatoEscolhido" to "Candidato X",
-            "data" to System.currentTimeMillis()
-        )
-
-        // Grava o documento na coleção "respostas_eleitorais"
-        db.collection("respostas_eleitorais")
-            .add(pesquisaTeste)
-            .addOnSuccessListener { documentReference ->
-                Log.d("FIREBASE_TESTE", "Documento salvo com ID: ${documentReference.id}")
-            }
-            .addOnFailureListener { e ->
-                Log.w("FIREBASE_TESTE", "Erro ao salvar", e)
-            }
-
         val progressBar = findViewById<ProgressBar>(R.id.pgb)
 
         lifecycleScope.launch {

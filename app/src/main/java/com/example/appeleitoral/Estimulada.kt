@@ -99,12 +99,11 @@ class Estimulada : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            val votoEspontaneo = intent.getStringExtra("votoEspontaneo")
+
             val intent = Intent(this, Problemas::class.java)
-            intent.putExtra(
-                // Passando a informação do candidato votado
-                "votoEstimulado",
-                candidatoSelecionado
-            )
+            intent.putExtra("votoEspontaneo", votoEspontaneo)
+            intent.putExtra("votoEstimulado", candidatoSelecionado)
             startActivity(intent)
 
         }

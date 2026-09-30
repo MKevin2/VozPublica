@@ -47,4 +47,6 @@ dependencies {
     // Adiciona a biblioteca do Firestore
     implementation("com.google.firebase:firebase-firestore")
 
+    // Salvar Localização
+    implementation("com.google.android.gms:play-services-location:21.2.0")
 }

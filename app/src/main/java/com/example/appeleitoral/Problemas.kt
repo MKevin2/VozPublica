@@ -81,51 +81,32 @@ class Problemas : AppCompatActivity() {
         }
 
         btConfirmar.setOnClickListener {
+            // 1. Resgata a bagagem que veio das telas anteriores
+            val votoEspontaneo = intent.getStringExtra("votoEspontaneo")
+            val votoEstimulado = intent.getStringExtra("votoEstimulado") // Assumindo que você passou isso na tela Estimulada
 
-            // Se marcou "Não sei responder", pode avançar
+            // 2. Prepara a Intent para a tela final (DadosEntrevistado)
+            val proximaIntent = Intent(this, DadosEntrevistado::class.java)
+            proximaIntent.putExtra("votoEspontaneo", votoEspontaneo)
+            proximaIntent.putExtra("votoEstimulado", votoEstimulado)
+
+            // Se marcou "Não sei responder", avança com lista vazia
             if (cbNaoResponder.isChecked) {
-
-                val problemas = ArrayList<String>()
-
-                val intent = Intent(this, DadosEntrevistado::class.java)
-
-                intent.putStringArrayListExtra(
-                    "problemas",
-                    problemas
-                )
-
-                startActivity(intent)
-
+                proximaIntent.putStringArrayListExtra("problemas", ArrayList())
+                startActivity(proximaIntent)
                 return@setOnClickListener
             }
 
-            // Se não marcou "Não sei responder",
-            // precisa selecionar EXATAMENTE 3 problemas
+            // Valida se selecionou exatamente 3
             if (problemasSelecionados.size != 3) {
-
-                Toast.makeText(
-                    this,
-                    "Selecione exatamente 3 problemas.",
-                    Toast.LENGTH_SHORT
-                ).show()
-
+                Toast.makeText(this, "Selecione exatamente 3 problemas.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Cria a lista com os 3 problemas
-            val problemas = ArrayList<String>()
-
-            problemas.addAll(problemasSelecionados)
-
-            // Vai para a próxima tela
-            val intent = Intent(this, DadosEntrevistado::class.java)
-
-            intent.putStringArrayListExtra(
-                "problemas",
-                problemas
-            )
-
-            startActivity(intent)
+            // Se passou na validação, avança com a lista preenchida
+            val problemas = ArrayList<String>(problemasSelecionados)
+            proximaIntent.putStringArrayListExtra("problemas", problemas)
+            startActivity(proximaIntent)
         }
     }
 
@@ -138,6 +119,9 @@ class Problemas : AppCompatActivity() {
         checkBox.setOnCheckedChangeListener { _, marcado ->
 
             if (marcado) {
+
+                // NOVIDADE: Se escolheu um problema, desmarca o "Não sei responder"
+                cbNaoResponder.isChecked = false
 
                 // Verifica se já existem 3 problemas selecionados
                 if (problemasSelecionados.size >= 3) {

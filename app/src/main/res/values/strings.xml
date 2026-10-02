@@ -67,6 +67,7 @@
     <string name="SelecionarOpcao">Selecione uma Opção:</string>
     <string name="BtnResultados">Resultados</string>
     <string name="BtnLimparDados">Limpar Dados</string>
+    <string name="BtnDeslogar">Deslogar</string>
 
     <!-- Botões de Ação Comuns -->
     <string name="BtnConfirmar">Confirmar</string>

@@ -119,13 +119,11 @@ class Problemas : AppCompatActivity() {
         checkBox.setOnCheckedChangeListener { _, marcado ->
 
             if (marcado) {
-
-                // NOVIDADE: Se escolheu um problema, desmarca o "Não sei responder"
+                // Se escolheu um problema, desmarca o "Não sei responder"
                 cbNaoResponder.isChecked = false
 
                 // Verifica se já existem 3 problemas selecionados
                 if (problemasSelecionados.size >= 3) {
-
                     // Desmarca o quarto problema
                     checkBox.isChecked = false
 
@@ -136,13 +134,11 @@ class Problemas : AppCompatActivity() {
                     ).show()
 
                 } else {
-
                     // Adiciona o problema na lista
                     problemasSelecionados.add(nomeProblema)
                 }
 
             } else {
-
                 // Remove o problema quando for desmarcado
                 problemasSelecionados.remove(nomeProblema)
             }

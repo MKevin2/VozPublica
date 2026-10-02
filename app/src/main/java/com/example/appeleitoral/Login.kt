@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
 class Login : AppCompatActivity() {
@@ -55,7 +56,16 @@ private lateinit var tvMensagem  : TextView
         }
 
         btFinalizar.setOnClickListener {
-            finishAffinity()
+
+            AlertDialog.Builder(this)
+                .setTitle("Finalizar aplicativo")
+                .setMessage("Deseja realmente sair do aplicativo?")
+                .setNegativeButton("CANCELAR", null)
+                .setPositiveButton("SAIR") { _, _ ->
+
+                    finishAffinity()
+                }
+                .show()
         }
     }
 }

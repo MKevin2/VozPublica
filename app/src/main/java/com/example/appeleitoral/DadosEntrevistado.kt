@@ -23,6 +23,9 @@ import com.google.firebase.firestore.firestore
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import android.text.InputType
+import android.text.TextWatcher
+import android.text.Editable
 
 class DadosEntrevistado : AppCompatActivity() {
 
@@ -60,15 +63,103 @@ class DadosEntrevistado : AppCompatActivity() {
             insets
         }
 
-        // Vincule com os IDs que colocou no seu XML (ajuste se tiverem nomes diferentes)
         etNome = findViewById(R.id.etNome)
         etCelular = findViewById(R.id.etCelular)
         btConfirmar = findViewById(R.id.btConfirmar)
+
+        etNome.inputType = InputType.TYPE_CLASS_TEXT or
+                InputType.TYPE_TEXT_FLAG_CAP_WORDS
+
+        etCelular.inputType = InputType.TYPE_CLASS_PHONE
+
+        etCelular.addTextChangedListener(object : TextWatcher {
+            private var atualizando = false
+
+            override fun beforeTextChanged(
+                s: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
+            }
+            override fun onTextChanged(
+                s: CharSequence?,
+                start: Int,
+                before: Int,
+                count: Int
+            ) {
+            }
+            override fun afterTextChanged(s: Editable?) {
+                if (atualizando) return
+                atualizando = true
+                val numeros = s.toString().replace(Regex("[^0-9]"), "")
+                val formatado = when {
+                    numeros.length <= 2 -> {
+                        numeros
+                    }
+                    numeros.length <= 7 -> {
+                        "(${numeros.substring(0, 2)}) " +
+                                numeros.substring(2)
+                    }
+                    numeros.length <= 11 -> {
+                        "(${numeros.substring(0, 2)}) " +
+                                numeros.substring(2, 7) +
+                                "-" +
+                                numeros.substring(7)
+                    }
+                    else -> {
+                        "(${numeros.substring(0, 2)}) " +
+                                numeros.substring(2, 7) +
+                                "-" +
+                                numeros.substring(7, 11)
+                    }
+                }
+                etCelular.setText(formatado)
+                etCelular.setSelection(formatado.length)
+
+                atualizando = false
+            }
+        })
 
         // Inicializa o cliente de localização
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
         btConfirmar.setOnClickListener {
+
+            val nome = etNome.text.toString().trim()
+            val celular = etCelular.text.toString().trim()
+
+            // Verifica se o nome foi preenchido
+            if (nome.isEmpty()) {
+                etNome.error = "Informe o nome"
+                etNome.requestFocus()
+                return@setOnClickListener
+            }
+
+            // Verifica se o nome possui números
+            if (nome.any { it.isDigit() }) {
+                etNome.error = "O nome não pode conter números"
+                etNome.requestFocus()
+                return@setOnClickListener
+            }
+
+            // Verifica se o celular foi preenchido
+            if (celular.isEmpty()) {
+                etCelular.error = "Informe o celular"
+                etCelular.requestFocus()
+                return@setOnClickListener
+            }
+
+            // Retira a máscara do celular
+            val numerosCelular = celular.replace(Regex("[^0-9]"), "")
+
+            // Verifica se possui 11 números
+            if (numerosCelular.length != 11) {
+                etCelular.error = "Informe um celular válido"
+                etCelular.requestFocus()
+                return@setOnClickListener
+            }
+            // Se tudo estiver correto, continua para o GPS
             verificarPermissaoGPS()
         }
     }
@@ -127,7 +218,7 @@ class DadosEntrevistado : AppCompatActivity() {
                 "latitude" to latitude,
                 "longitude" to longitude
             ),
-            "dataHora" to dataFormatada // Grava a data/hora automaticamente em milissegundos
+            "dataHora" to dataFormatada
         )
 
         // 4. Salva no banco de dados e reinicia

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 
@@ -18,6 +19,7 @@ class Estimulada : AppCompatActivity() {
     private lateinit var cardBranco: CardView
     private lateinit var cardNulo: CardView
     private lateinit var cardNaoSei: CardView
+    private lateinit var cardNaoResponder: CardView
 
     private lateinit var btConfirmarEstimulada: Button
 
@@ -41,9 +43,9 @@ class Estimulada : AppCompatActivity() {
         cardBranco = findViewById<CardView>(R.id.cardBranco)
         cardNulo = findViewById<CardView>(R.id.cardNulo)
         cardNaoSei = findViewById<CardView>(R.id.cardNaoSei)
+        cardNaoResponder = findViewById<CardView>(R.id.cardNaoResponder)
 
-        btConfirmarEstimulada =
-            findViewById<Button>(R.id.btConfirmarEstimulada)
+        btConfirmarEstimulada = findViewById<Button>(R.id.btConfirmarEstimulada)
 
         cardCandidato1.setOnClickListener {
             candidatoSelecionado = "Carlos Alberto Siqueira"
@@ -88,14 +90,26 @@ class Estimulada : AppCompatActivity() {
         }
 
         cardNaoSei.setOnClickListener {
-            candidatoSelecionado = null
+            candidatoSelecionado = "Não sei"
             respondeu = true
             selecionarCard(cardNaoSei)
+        }
+
+        cardNaoResponder.setOnClickListener {
+            candidatoSelecionado = null
+            respondeu = true
+            selecionarCard(cardNaoResponder)
         }
 
         btConfirmarEstimulada.setOnClickListener {
 
             if (!respondeu) {
+
+                Toast.makeText(this,
+                    "Por favor, responda à pesquisa.",
+                    Toast.LENGTH_SHORT
+                ).show()
+
                 return@setOnClickListener
             }
 

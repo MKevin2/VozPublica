@@ -34,9 +34,9 @@ class Eleitores : AppCompatActivity() {
         }
 
         btVoltarMenu = findViewById(R.id.btVoltarMenu)
-        tvListaRegistos = findViewById(R.id.tvListaRegistos) // Vincula o novo ID do XML
+        tvListaRegistos = findViewById(R.id.tvListaRegistos)
 
-        // A sua lógica original de navegação
+        // Botão Voltar para o menu
         btVoltarMenu.setOnClickListener {
             val intentMenu = Intent(this, MenuResultado::class.java)
             startActivity(intentMenu)
@@ -51,12 +51,11 @@ class Eleitores : AppCompatActivity() {
         tvListaRegistos.text = "Carregando os dados..."
 
         db.collection("respostas_eleitorais")
-            .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.ASCENDING) // A MÁGICA ACONTECE AQUI
+            .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.ASCENDING) // Ordenando os registros
             .get()
             .addOnSuccessListener { result ->
                 val construtorDeTexto = java.lang.StringBuilder()
 
-                // Como usamos o orderBy, o 'result' já vem ordenado perfeitamente!
                 for (document in result) {
                     val entrevistado = document.get("entrevistado") as? Map<String, Any>
                     val nome = entrevistado?.get("nome") as? String ?: "Não informado"

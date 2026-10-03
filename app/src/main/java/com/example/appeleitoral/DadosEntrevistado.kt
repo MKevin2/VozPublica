@@ -35,18 +35,20 @@ class DadosEntrevistado : AppCompatActivity() {
 
     // Ferramenta do Google para pegar a localização
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+
+    // Abrindo a conexão com o banco de dados na nuvem
     private val db = Firebase.firestore
 
     // Gestor de permissão para o GPS
     private val requestPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestMultiplePermissions()
-    ) { permissions ->
+        ActivityResultContracts.RequestMultiplePermissions() // Avisa o celular que estamos fazendo uma requisição
+    ) { permissions -> // Envia efetivamente o pedido
         val permissaoConcedida = permissions[Manifest.permission.ACCESS_FINE_LOCATION] == true ||
-                permissions[Manifest.permission.ACCESS_COARSE_LOCATION] == true
+                permissions[Manifest.permission.ACCESS_COARSE_LOCATION] == true // Aqui, aceitamos ou a localização exata, ou a aproximada
 
-        if (permissaoConcedida) {
+        if (permissaoConcedida) { // Se tiver permissão, chama a fuunção para gravar a localização
             obterLocalizacaoESalvar()
-        } else {
+        } else { // Se não, salva sem localização.
             Toast.makeText(this, "Permissão de GPS negada. A gravar sem localização.", Toast.LENGTH_SHORT).show()
             salvarPesquisaNoFirebase(null, null)
         }
@@ -68,11 +70,11 @@ class DadosEntrevistado : AppCompatActivity() {
         btConfirmar = findViewById(R.id.btConfirmar)
 
         etNome.inputType = InputType.TYPE_CLASS_TEXT or
-                InputType.TYPE_TEXT_FLAG_CAP_WORDS
+                InputType.TYPE_TEXT_FLAG_CAP_WORDS // Definindo o tipo de teclado que será aberto
 
-        etCelular.inputType = InputType.TYPE_CLASS_PHONE
+        etCelular.inputType = InputType.TYPE_CLASS_PHONE // Definindo o tipo de teclado que será aberto
 
-        etCelular.addTextChangedListener(object : TextWatcher {
+        etCelular.addTextChangedListener(object : TextWatcher { // Cria uma máscara de formatação
             private var atualizando = false
 
             override fun beforeTextChanged(
@@ -92,7 +94,7 @@ class DadosEntrevistado : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {
                 if (atualizando) return
                 atualizando = true
-                val numeros = s.toString().replace(Regex("[^0-9]"), "")
+                val numeros = s.toString().replace(Regex("[^0-9]"), "") // Tudo que for diferente de 0 a 9, será tirado
                 val formatado = when {
                     numeros.length <= 2 -> {
                         numeros
@@ -178,8 +180,8 @@ class DadosEntrevistado : AppCompatActivity() {
 
     @SuppressLint("MissingPermission")
     private fun obterLocalizacaoESalvar() {
-        fusedLocationClient.lastLocation
-            .addOnSuccessListener { location: Location? ->
+        fusedLocationClient.lastLocation // Recupera a localização
+            .addOnSuccessListener { location: Location? -> // Se tiver sucesso em pedir a requisição...
                 if (location != null) {
                     salvarPesquisaNoFirebase(location.latitude, location.longitude)
                 } else {
@@ -188,7 +190,7 @@ class DadosEntrevistado : AppCompatActivity() {
                     salvarPesquisaNoFirebase(null, null)
                 }
             }
-            .addOnFailureListener {
+            .addOnFailureListener { // Se não tiver nenhuma localização
                 salvarPesquisaNoFirebase(null, null)
             }
     }
@@ -233,7 +235,7 @@ class DadosEntrevistado : AppCompatActivity() {
                 startActivity(intentMenu)
             }
             .addOnFailureListener { e ->
-                Toast.makeText(this, "Erro ao gravar: ${e.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(this,  "Erro ao gravar: ${e.message}", Toast.LENGTH_LONG).show()
             }
     }
 }

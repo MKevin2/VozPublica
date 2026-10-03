@@ -66,8 +66,8 @@ class MenuResultado : AppCompatActivity() {
         // Deslogar
         btDeslogar.setOnClickListener {
             AlertDialog.Builder(this)
-                .setTitle("Deslogar")
-                .setMessage("Deseja realmente sair da conta?")
+                .setTitle("Encerrar a Sessão")
+                .setMessage("Deseja realmente sair da sua conta?")
                 .setNegativeButton("CANCELAR", null)
                 .setPositiveButton("DESLOGAR") { _, _ ->
 

@@ -3,7 +3,7 @@
     <string name="app_name">Voz!</string>
     <string name="Descricao_Imagem">Logo: VozPública</string>
 
-    <!-- Tela de Login -->
+    <!-- Tela: Login -->
     <string name="Titulo_Login">Login</string>
     <string name="tvUsuário">Usuário</string>
     <string name="tvSenha">Senha</string>
@@ -11,7 +11,7 @@
     <string name="hintSenha">Digite sua senha…</string>
     <string name="BtnAcessar">Acessar</string>
 
-    <!-- Tela de Cadastro / Entrevistado -->
+    <!-- Tela: Cadastro / Entrevistado -->
     <string name="Titulo_Entrevistado">Dados do Entrevistado</string>
     <string name="tvNome">Nome</string>
     <string name="tvCelular">Celular</string>
@@ -21,12 +21,12 @@
     <string name="Localizacao">Localização: Registrada Automaticamente.</string>
     <string name="Titulo_Eleitores">Eleitores</string>
 
-    <!-- Pesquisa Espontânea -->
+    <!-- Tela: Espontânea -->
     <string name="Titulo_Espontanea">Pesquisa Espontânea</string>
     <string name="Pergunta_expontanea">Em quem você pretende votar para Presidente?</string>
     <string name="hintExpontanea">Digite o nome do candidato…</string>
 
-    <!-- Pesquisa Estimulada e Candidatos -->
+    <!-- Tela: Estimulada -->
     <string name="Pesquisa_estimulada">Pesquisa Estimulada: Selecione um candidato</string>
     <string name="Foto_candidato">Candidato à Presidência</string>
     <string name="Roberto">Roberto Sampaio Moura</string>
@@ -49,7 +49,7 @@
     <string name="NaoSei">Não Sei</string>
     <string name="Outro">Outro</string>
 
-    <!-- Principais Problemas -->
+    <!-- Tela: Principais Problemas -->
     <string name="Pergunta_problemas">Principais Problemas: Selecione os 3 principais problemas:</string>
     <string name="Saúde">Saúde</string>
     <string name="Educação">Educação</string>
@@ -61,13 +61,24 @@
     <string name="Economia">Economia</string>
     <string name="Corrupcao">Corrupção</string>
 
-    <!-- Resultados e Menu -->
+    <!-- Tela: Menu Resultados -->
     <string name="Titulo_Resultados">Resultados</string>
     <string name="Titulo_MenuResultados">Dados das Pesquisas</string>
     <string name="SelecionarOpcao">Selecione uma Opção:</string>
     <string name="BtnResultados">Resultados</string>
     <string name="BtnLimparDados">Limpar Dados</string>
     <string name="BtnDeslogar">Deslogar</string>
+
+    <!-- Tela:Resultados -->
+    <string name="Titulo_Grafico">Distribuição de Votos (Estimulada):</string>
+    <string name="Legenda_Grafico">Legenda</string>
+    <string name="Quantidade_entrevistados">Quantidade de pessoas entrevistadas: 0</string>
+
+    <!-- Tela: Eleitores -->
+    <string name="Historico">Histórico de Registros</string>
+    <string name="Voto_Estimulado">Voto Estimulado</string>
+    <string name="Voto_Espontaneo">Voto Espontâneo</string>
+    <string name="Voto_Problemas">Principais Problemas</string>
 
     <!-- Botões de Ação Comuns -->
     <string name="BtnConfirmar">Confirmar</string>

@@ -19,10 +19,18 @@ import java.util.Locale
 class Resultados : AppCompatActivity() {
 
     private lateinit var tvTotalEntrevistados: TextView
-    private lateinit var graficoPizza: GraficoPizza
-    private lateinit var layoutResultados: LinearLayout
-    private lateinit var layoutLegenda: LinearLayout
     private lateinit var btVoltar: Button
+
+    // Elementos da Espontânea
+    private lateinit var layoutEspontanea: LinearLayout
+
+    // Elementos da Estimulada
+    private lateinit var graficoEstimulada: GraficoPizza
+    private lateinit var layoutLegendaEstimulada: LinearLayout
+
+    // Elementos de Problemas
+    private lateinit var graficoProblemas: GraficoPizza
+    private lateinit var layoutLegendaProblemas: LinearLayout
 
     private val db = Firebase.firestore
 
@@ -37,13 +45,16 @@ class Resultados : AppCompatActivity() {
             insets
         }
 
-        // Componentes da tela
-        tvTotalEntrevistados = findViewById<TextView>(R.id.tvTotalEntrevistados)
-        graficoPizza = findViewById<GraficoPizza>(R.id.graficoPizza)
-        layoutResultados = findViewById<LinearLayout>(R.id.layoutResultados)
-        layoutLegenda = findViewById<LinearLayout>(R.id.layoutLegenda)
-        btVoltar = findViewById<Button>(R.id.btVoltar)
+        tvTotalEntrevistados = findViewById(R.id.tvTotalEntrevistados)
+        btVoltar = findViewById(R.id.btVoltar)
 
+        layoutEspontanea = findViewById(R.id.layoutEspontanea)
+
+        graficoEstimulada = findViewById(R.id.graficoEstimulada)
+        layoutLegendaEstimulada = findViewById(R.id.layoutLegendaEstimulada)
+
+        graficoProblemas = findViewById(R.id.graficoProblemas)
+        layoutLegendaProblemas = findViewById(R.id.layoutLegendaProblemas)
 
         btVoltar.setOnClickListener {
             val intentMenu = Intent(this, MenuResultado::class.java)
@@ -54,198 +65,109 @@ class Resultados : AppCompatActivity() {
         carregarResultados()
     }
 
-
     private fun carregarResultados() {
-
         db.collection("respostas_eleitorais")
             .get()
             .addOnSuccessListener { resultado ->
-                val contagem = mutableMapOf<String, Int>()
-                // Percorre todas as pesquisas
+                val totalEntrevistados = resultado.size()
+                tvTotalEntrevistados.text = "Total de Entrevistas: $totalEntrevistados"
+
+                val contagemEspontanea = mutableMapOf<String, Int>()
+                val contagemEstimulada = mutableMapOf<String, Int>()
+                val contagemProblemas = mutableMapOf<String, Int>()
+
                 for (documento in resultado.documents) {
-                    val voto =
-                        documento.getString("votoEstimulado")
-                    val opcao = when (voto) {
-                        null -> "Desejo não responder"
-                        else -> voto
+                    // 1. Processar Espontânea (Padronizar para maiúsculas e sem espaços extras)
+                    val votoEsp = documento.getString("votoEspontaneo")
+                    val opcaoEsp = if (votoEsp.isNullOrBlank()) "NÃO SABE / NÃO RESPONDEU" else votoEsp.trim().uppercase(Locale.getDefault())
+                    contagemEspontanea[opcaoEsp] = contagemEspontanea.getOrDefault(opcaoEsp, 0) + 1
+
+                    // 2. Processar Estimulada
+                    val votoEst = documento.getString("votoEstimulado")
+                    val opcaoEst = votoEst ?: "Não respondeu"
+                    contagemEstimulada[opcaoEst] = contagemEstimulada.getOrDefault(opcaoEst, 0) + 1
+
+                    // 3. Processar Problemas (É uma lista)
+                    val problemas = documento.get("problemasCitados") as? List<String> ?: emptyList()
+                    if (problemas.isEmpty()) {
+                        contagemProblemas["Nenhum"] = contagemProblemas.getOrDefault("Nenhum", 0) + 1
+                    } else {
+                        for (problema in problemas) {
+                            contagemProblemas[problema] = contagemProblemas.getOrDefault(problema, 0) + 1
+                        }
                     }
-                    contagem[opcao] =
-                        (contagem[opcao] ?: 0) + 1
                 }
 
-                // Quantidade total de entrevistados
-                val total = resultado.size()
-
-                tvTotalEntrevistados.text = "Quant. de pessoas entrevistadas: $total"
-
-                // Mostra os resultados
-                mostrarResultados(contagem, total
-                )
+                // Renderiza as telas
+                mostrarSecaoTexto(contagemEspontanea, totalEntrevistados, layoutEspontanea)
+                mostrarSecaoGrafico(contagemEstimulada, totalEntrevistados, graficoEstimulada, layoutLegendaEstimulada)
+                mostrarSecaoGrafico(contagemProblemas, totalEntrevistados, graficoProblemas, layoutLegendaProblemas)
             }
             .addOnFailureListener { erro ->
-                Toast.makeText(
-                    this,
-                    "Erro ao carregar resultados: ${erro.message}",
-                    Toast.LENGTH_LONG
-                ).show()
+                Toast.makeText(this, "Erro: ${erro.message}", Toast.LENGTH_LONG).show()
             }
     }
 
-    private fun mostrarResultados(
-        contagem: Map<String, Int>,
-        total: Int
-    ) {
-        // Limpa os resultados anteriores
-        layoutResultados.removeAllViews()
-        layoutLegenda.removeAllViews()
+    // Função para renderizar listas simples de texto (Usado na Espontânea)
+    private fun mostrarSecaoTexto(contagem: Map<String, Int>, total: Int, layout: LinearLayout) {
+        layout.removeAllViews()
 
-        // Pega os valores para o gráfico
-        val valores = contagem.values.toList()
+        // Ordena do mais votado para o menos votado
+        val ordenado = contagem.entries.sortedByDescending { it.value }
 
-        // Atualiza o gráfico
-        graficoPizza.atualizarDados(valores)
+        for (entrada in ordenado) {
+            val porcentagem = if (total > 0) (entrada.value.toDouble() / total) * 100 else 0.0
 
-
-        // Pega as cores utilizadas pelo gráfico
-        val cores = graficoPizza.obterCores()
-
-        // Percorre cada resultado
-        for ((index, entrada) in contagem.entries.withIndex()) {
-
-            val nome = entrada.key
-            val quantidade = entrada.value
-
-            // Calcula porcentagem
-            val porcentagem =
-                if (total > 0) {
-                    quantidade.toDouble() /
-                            total * 100
-                } else {
-                    0.0
-                }
-
-            // -----------------------------
-            // RESULTADO EM TEXTO
-            // -----------------------------
-            val texto =
-                TextView(this)
-            texto.text =
-                String.format(
-                    Locale("pt", "BR"),
-                    "%s - %d - %.1f%%",
-                    nome,
-                    quantidade,
-                    porcentagem
-                )
+            val texto = TextView(this)
+            texto.text = String.format(Locale("pt", "BR"), "%s: %d voto(s) (%.1f%%)", entrada.key, entrada.value, porcentagem)
             texto.textSize = 16f
-            texto.setTextColor(
-                Color.BLACK
-            )
-
-            texto.setPadding(
-                5,
-                4,
-                5,
-                4
-            )
-
-            layoutResultados.addView(
-                texto
-            )
-            // -----------------------------
-            // LEGENDA COLORIDA
-            // -----------------------------
-            criarLegenda(
-                nome,
-                quantidade,
-                porcentagem,
-                cores[index % cores.size]
-            )
+            texto.setTextColor(Color.BLACK)
+            texto.setPadding(0, 8, 0, 8)
+            layout.addView(texto)
         }
     }
 
-    private fun criarLegenda(
-        nome: String,
-        quantidade: Int,
-        porcentagem: Double,
-        cor: Int
-    ) {
-        // Linha da legenda
-        val linha = LinearLayout(this)
+    // Função reaproveitável para desenhar o Gráfico e a Legenda (Usada na Estimulada e Problemas)
+    private fun mostrarSecaoGrafico(contagem: Map<String, Int>, total: Int, grafico: GraficoPizza, layoutLegenda: LinearLayout) {
+        layoutLegenda.removeAllViews()
 
-        linha.orientation = LinearLayout.HORIZONTAL
-        linha.gravity = Gravity.CENTER_VERTICAL
+        // Ordena do mais votado para o menos votado para o gráfico fazer sentido
+        val ordenado = contagem.entries.sortedByDescending { it.value }
 
-        // Margem da linha
-        val margem = 6
-        val parametrosLinha = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            )
+        val valores = ordenado.map { it.value }
+        grafico.atualizarDados(valores)
 
-        parametrosLinha.setMargins(
-            0,
-            margem,
-            0,
-            margem
-        )
+        val cores = grafico.obterCores()
 
-        linha.layoutParams =
-            parametrosLinha
-        // -----------------------------
-        // QUADRADO COLORIDO
-        // -----------------------------
-        val marcador =
-            TextView(this)
-        marcador.setBackgroundColor(
-            cor
-        )
-        val parametrosMarcador =
-            LinearLayout.LayoutParams(
-                25,
-                25
-            )
+        for ((index, entrada) in ordenado.withIndex()) {
+            val nome = entrada.key
+            val quantidade = entrada.value
+            val porcentagem = if (total > 0) (quantidade.toDouble() / total) * 100 else 0.0
 
-        parametrosMarcador.setMargins(
-            0,
-            0,
-            10,
-            0
-        )
+            // Linha da legenda
+            val linha = LinearLayout(this)
+            linha.orientation = LinearLayout.HORIZONTAL
+            linha.gravity = Gravity.CENTER_VERTICAL
+            val paramsLinha = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+            paramsLinha.setMargins(0, 8, 0, 8)
+            linha.layoutParams = paramsLinha
 
-        marcador.layoutParams =
-            parametrosMarcador
+            // Quadrado de cor
+            val marcador = TextView(this)
+            marcador.setBackgroundColor(cores[index % cores.size])
+            val paramsMarcador = LinearLayout.LayoutParams(30, 30)
+            paramsMarcador.setMargins(0, 0, 15, 0)
+            marcador.layoutParams = paramsMarcador
 
-        // -----------------------------
-        // TEXTO DA LEGENDA
-        // -----------------------------
-        val texto = TextView(this)
+            // Texto da legenda
+            val texto = TextView(this)
+            texto.text = String.format(Locale("pt", "BR"), "%s: %d (%.1f%%)", nome, quantidade, porcentagem)
+            texto.textSize = 15f
+            texto.setTextColor(Color.BLACK)
 
-        texto.text =
-            String.format(
-                Locale("pt", "BR"),
-                "%s - %d voto(s) - %.1f%%",
-                nome,
-                quantidade,
-                porcentagem
-            )
-
-        texto.textSize = 14f
-        texto.setTextColor(
-            Color.BLACK
-        )
-
-        // Adiciona os componentes
-        linha.addView(
-            marcador
-        )
-        linha.addView(
-            texto
-        )
-
-        // Adiciona a linha na legenda
-        layoutLegenda.addView(
-            linha
-        )
+            linha.addView(marcador)
+            linha.addView(texto)
+            layoutLegenda.addView(linha)
+        }
     }
 }

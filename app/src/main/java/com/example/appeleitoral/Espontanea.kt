@@ -59,10 +59,10 @@ class Espontanea : AppCompatActivity() {
         btTerminar.setOnClickListener {
 
             AlertDialog.Builder(this)
-                .setTitle("Terminar pesquisa")
-                .setMessage("Deseja realmente terminar esta pesquisa?\n\nOs dados preenchidos até agora não serão salvos.")
+                .setTitle("Encerrar sessão")
+                .setMessage("Deseja realmente sair da sua conta?")
                 .setNegativeButton("CANCELAR", null)
-                .setPositiveButton("TERMINAR") { _, _ ->
+                .setPositiveButton("DESLOGAR") { _, _ ->
 
                     val intent = Intent(this, Login::class.java)
 
@@ -100,7 +100,7 @@ class Espontanea : AppCompatActivity() {
                 respondeu = true
             }
 
-            // Vai para a pesquisa estimulada
+            // Carrega as informações para a próxima tela
             val intent = Intent(this, Estimulada::class.java)
 
             intent.putExtra("votoEspontaneo", votoEspontaneo)

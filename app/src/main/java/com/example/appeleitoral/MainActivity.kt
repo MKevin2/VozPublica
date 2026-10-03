@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         val progressBar = findViewById<ProgressBar>(R.id.pgb)
 
         lifecycleScope.launch {
-            val tempoTotalMs = 5000L
+            val tempoTotalMs = 2000L
             val passos = 100
             val tempoPorPasso = tempoTotalMs / passos
 

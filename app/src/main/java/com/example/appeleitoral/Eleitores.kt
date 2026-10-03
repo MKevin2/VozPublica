@@ -48,15 +48,16 @@ class Eleitores : AppCompatActivity() {
     }
 
     private fun carregarDadosDeFormaSimples() {
-        tvListaRegistos.text = "A carregar dados..."
+        tvListaRegistos.text = "Carregando os dados..."
 
         db.collection("respostas_eleitorais")
+            .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.ASCENDING) // A MÁGICA ACONTECE AQUI
             .get()
             .addOnSuccessListener { result ->
                 val construtorDeTexto = java.lang.StringBuilder()
 
+                // Como usamos o orderBy, o 'result' já vem ordenado perfeitamente!
                 for (document in result) {
-                    // Extrai os campos do Firebase
                     val entrevistado = document.get("entrevistado") as? Map<String, Any>
                     val nome = entrevistado?.get("nome") as? String ?: "Não informado"
                     val celular = entrevistado?.get("celular") as? String ?: "Não informado"
@@ -68,7 +69,6 @@ class Eleitores : AppCompatActivity() {
                     val lon = localizacaoMap?.get("longitude")
                     val localStr = if (lat != null && lon != null) "$lat, $lon" else "Sem GPS"
 
-                    // Adiciona os dados de cada eleitor formatados
                     construtorDeTexto.append("Nome: $nome\n")
                     construtorDeTexto.append("Celular: $celular\n")
                     construtorDeTexto.append("Data/Hora: $dataHora\n")
@@ -76,7 +76,6 @@ class Eleitores : AppCompatActivity() {
                     construtorDeTexto.append("-----------------------------------\n\n")
                 }
 
-                // Atualiza a tela com todos os registos de uma vez
                 if (construtorDeTexto.isEmpty()) {
                     tvListaRegistos.text = "Nenhuma pesquisa encontrada."
                 } else {

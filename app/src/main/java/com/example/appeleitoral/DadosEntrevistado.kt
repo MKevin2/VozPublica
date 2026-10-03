@@ -218,7 +218,8 @@ class DadosEntrevistado : AppCompatActivity() {
                 "latitude" to latitude,
                 "longitude" to longitude
             ),
-            "dataHora" to dataFormatada
+            "dataHora" to dataFormatada,
+            "timestamp" to System.currentTimeMillis()
         )
 
         // 4. Salva no banco de dados e reinicia
